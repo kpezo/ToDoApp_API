@@ -7,6 +7,11 @@ namespace ToDoApp_API.DatabaseContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    base.OnModelCreating(builder);
+        //}
+
         public DbSet<TodoList> TodoLists { get; set; }
         public DbSet<Priority> Priority { get; set; }
         public DbSet<Status> Status { get; set; }
