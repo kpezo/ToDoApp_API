@@ -1,8 +1,8 @@
-﻿
+﻿using ToDoApp_API.Models;
 using ToDoApp_API.Repository.Interfaces;
-using ToDoApp_API.Services.Interfaces;
+using ToDoApp_API.Services.Authentication.Interfaces;
 
-namespace ToDoApp_API.Services
+namespace ToDoApp_API.Services.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {
@@ -15,20 +15,18 @@ namespace ToDoApp_API.Services
             _userRepository = userRepository;
         }
 
-        public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+        public AuthenticationResult Register(string username, string password)
         {
 
             //1. Validate that the user does not exists
-            if (_userRepository.GetUserByEmail(email) is not null)
+            if (_userRepository.GetUserByUserName(username) is not null)
             {
                 throw new Exception("Email already exists");
             }
             //2. Create user(generate unique ID) & Persist to DB
             var user = new User
             {
-                FirstName = firstName,
-                LastName = lastName,
-                Email = email,
+                UserName = username,
                 Password = password
             };
 
@@ -44,10 +42,10 @@ namespace ToDoApp_API.Services
                 token);
         }
 
-        public AuthenticationResult Login(string email, string password)
+        public AuthenticationResult Login(string username, string password)
         {
             //1. Validate that the user exists
-            if (_userRepository.GetUserByEmail(email) is not User user)
+            if (_userRepository.GetUserByUserName(username) is not User user)
             {
                 throw new Exception("User with given email does not exist.");
             }

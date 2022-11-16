@@ -1,6 +1,6 @@
 ﻿using Microsoft.Identity.Client;
 
-namespace ToDoApp_API.Services.Interfaces
+namespace ToDoApp_API.Services.Authentication.Interfaces
 {
     public interface IAuthenticationService
     {

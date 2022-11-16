@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ToDoApp_API.Models;
+using ToDoApp_API.Models.Contracts;
+using ToDoApp_API.Services.Authentication.Interfaces;
 
 namespace ToDoApp_API.Controllers
 {
@@ -20,14 +20,12 @@ namespace ToDoApp_API.Controllers
         public IActionResult Register(RegisterRequest request)
         {
             var authResult = _authenticationService.Register(
-                request.Username,
+                request.UserName,
                 request.Password);
 
             var response = new AuthenticationResponse(
                 authResult.User.Id,
-                authResult.User.FirstName,
-                authResult.User.LastName,
-                authResult.User.Email,
+                authResult.User.UserName,
                 authResult.Token);
 
             return Ok(response);
@@ -37,14 +35,12 @@ namespace ToDoApp_API.Controllers
         public IActionResult Login(LoginRequest request)
         {
             var authResult = _authenticationService.Login(
-                            request.Username,
+                            request.UserName,
                             request.Password);
 
             var response = new AuthenticationResponse(
                 authResult.User.Id,
-                authResult.User.FirstName,
-                authResult.User.LastName,
-                authResult.User.Email,
+                authResult.User.UserName,
                 authResult.Token);
 
             return Ok(response);
