@@ -5,7 +5,8 @@ namespace ToDoApp_API.Repository.Interfaces
 {
     public interface IUserRepository
     {
-        public User? GetUserByUsername(string username);
-        public void AddUser(User user);
+
+        public Task<User> Login(string username);
+        public void Register(User user);
     }
 }

@@ -12,7 +12,7 @@ namespace ToDoApp_API.DatabaseContext
         //    base.OnModelCreating(builder);
         //}
 
-        public DbSet<TodoList> TodoLists { get; set; }
+        public DbSet<Todo> Todo { get; set; }
         public DbSet<Priority> Priority { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<User> Users { get; set; }

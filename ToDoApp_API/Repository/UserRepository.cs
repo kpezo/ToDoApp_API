@@ -17,7 +17,8 @@ namespace ToDoApp_API.Repository
             await _dbContext.SaveChangesAsync();
         }
 
-        public User? GetUserByUsername(string username)
+        public User? GetUser(string username)
             => _dbContext.Set<User>().FirstOrDefaultAsync(x => x.Username == username).Result;
+
     }
 }

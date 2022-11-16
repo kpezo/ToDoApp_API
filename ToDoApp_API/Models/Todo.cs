@@ -2,7 +2,7 @@
 
 namespace ToDoApp_API.Models
 {
-    public class TodoList
+    public class Todo
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
