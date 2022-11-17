@@ -12,8 +12,8 @@ using ToDoApp_API.DatabaseContext;
 namespace ToDoAppAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221116084412_intial")]
-    partial class intial
+    [Migration("20221117162154_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,7 @@ namespace ToDoAppAPI.Migrations
                     b.ToTable("Status");
                 });
 
-            modelBuilder.Entity("ToDoApp_API.Models.TodoList", b =>
+            modelBuilder.Entity("ToDoApp_API.Models.Todo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,14 +69,14 @@ namespace ToDoAppAPI.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(280)");
 
-                    b.Property<DateTime>("Duedate")
+                    b.Property<DateTime?>("Duedate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(80)");
 
                     b.Property<int>("PriorityId")
                         .HasColumnType("int");
@@ -93,7 +93,7 @@ namespace ToDoAppAPI.Migrations
 
                     b.HasIndex("StatusId");
 
-                    b.ToTable("TodoLists");
+                    b.ToTable("Todo");
                 });
 
             modelBuilder.Entity("ToDoApp_API.Models.User", b =>
@@ -106,7 +106,7 @@ namespace ToDoAppAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -115,7 +115,7 @@ namespace ToDoAppAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ToDoApp_API.Models.TodoList", b =>
+            modelBuilder.Entity("ToDoApp_API.Models.Todo", b =>
                 {
                     b.HasOne("ToDoApp_API.Models.Priority", "Priority")
                         .WithMany()

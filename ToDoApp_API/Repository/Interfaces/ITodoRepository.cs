@@ -1,13 +1,15 @@
 ﻿using ToDoApp_API.Models;
+using ToDoApp_API.Models.Request;
 
 namespace ToDoApp_API.Repository.Interfaces
 {
     public interface ITodoRepository
     {
-        Task<List<Todo>> GetAllTodos();
-        Task<Todo> GetTodoById(int id);
-        void DeleteTodoById(int id);
-        void UpdateTodo(Todo todo);
+        void CreateTask(CreateTaskRequest task);
+        Task<List<Todo>> GetAllTasks();
+        Task<Todo> ReadTask(int id);
+        void DeleteTask(int id);
+        void UpdateTodo(UpdateTaskRequest utr);
 
     }
 }

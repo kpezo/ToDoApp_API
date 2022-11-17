@@ -5,7 +5,7 @@ using ToDoApp_API.Services.Authentication.Interfaces;
 
 namespace ToDoApp_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace ToDoApp_API.Controllers
             var authResult = _authenticationService.Register(
                 request.UserName,
                 request.Password);
-
+            
             var response = new AuthenticationResponse(
                 authResult.User.Id,
                 authResult.User.UserName,
